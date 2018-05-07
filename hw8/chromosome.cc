@@ -10,6 +10,7 @@
 #include <random>
 
 #include "chromosome.h"
+#include "tsp.h"
 
 // Generate a completely random permutation from a list of cities
 Chromosome::Chromosome(const cities_t* cities_ptr)
@@ -183,7 +184,7 @@ Chromosome::create_child_of(const Chromosome* p1, const Chromosome* p2,
   return child;
 }
 
-double calc_euclidian_dist(coord_t first, coord_t second) {
+double calc_dist(coord_t first, coord_t second) {
     double x1 = first.first, x2 = second.first, y1 = first.second, y2 = second.second;
     double x = x1 - x2;
     double y = y1 - y2;
@@ -206,14 +207,14 @@ Chromosome::calculate_fitness() const
   for (permutation_t::const_iterator it = my_order.begin() += 1; it != my_order.end(); it++) {
     int key = *it;
     coord_t city = cities[key];
-    double distance = calc_euclidian_dist(prevCity, city);
+    double distance = calc_dist(prevCity, city);
     totalDistance += distance;
     prevCity = city;
   }
   // get last city coords
   coord_t lastCity = cities[*my_order.rbegin()];
   // add distance between last and first cities
-  double returnDistance = calc_euclidian_dist(lastCity, firstCity);
+  double returnDistance = calc_dist(lastCity, firstCity);
   totalDistance += returnDistance;
   // distance subtracted from max distance (about?), so worst perfomer has fitness near 30000, best gets closer to 0
   const unsigned int fitness = 30000 - totalDistance;

@@ -7,6 +7,13 @@
 
 #include <string>
 #include <vector>
+// we need fstream to read in files
+#include <fstream>
+// used to log on file opening err
+#include <iostream>
+#include <random>
+#include <cmath>
+#include <algorithm>
 
 //////////////// Types
 

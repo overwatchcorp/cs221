@@ -6,7 +6,7 @@
 #ifndef _DEME_H_
 #define _DEME_H_
 
-#include "chromosome.h"
+#include "chromosome.cc"
 #include <random>
 #include <vector>
 
@@ -31,7 +31,10 @@ class Deme {
     // Return a copy of the chromosome with the highest fitness.
     Chromosome get_best() const;
 
+    // create a population of random chromosomes
     std::vector<Chromosome *> create_pop(const cities_t* cities_ptr, unsigned pop_size);
+
+    // mutate and recombine half of parent chromosomes to re-fill population
 
   protected:
     // Randomly select a chromosome in the population based on fitness and

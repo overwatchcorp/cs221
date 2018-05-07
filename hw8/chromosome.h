@@ -8,6 +8,7 @@
 #ifndef _CHROMOSOME_H_
 #define _CHROMOSOME_H_
 
+#include "tsp.cc"
 #include "tsp.h"
 
 class Chromosome {

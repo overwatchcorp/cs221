@@ -56,3 +56,27 @@ Chromosome* Deme::select_parent() {
   return out;
 }
 
+void Deme::compute_next_generation() {
+  std::vector<Chromosome *> new_pop;
+  for(unsigned long i = 0; i < my_pop.size() / 2; i++) {
+    Chromosome* p1 = select_parent();
+    Chromosome* p2 = select_parent();
+
+    // create (truly, I think) random seed
+    std::random_device dev;
+    // create random number generator
+    std::default_random_engine gen(dev());
+    // create random distribution of unsinged ints
+    std::uniform_int_distribution<double> dist(0, 1);
+    int prob1, prob2;
+    prob1 = dist(gen);
+    prob2 = dist(gen);
+    if (prob1 > my_mut_prob) p1->mutate();
+    if (prob2 > my_mut_prob) p2->mutate();
+    std::pair<Chromosome*, Chromosome*> children = p1->recombine(p2);
+    new_pop.push_back(p1);
+    new_pop.push_back(p2);
+    new_pop.push_back(children.first);
+    new_pop.push_back(children.second);
+  }
+}
