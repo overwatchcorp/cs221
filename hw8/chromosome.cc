@@ -21,7 +21,7 @@ Chromosome::Chromosome(const cities_t* cities_ptr)
 // Clean up as necessary
 Chromosome::~Chromosome()
 {
-  //TBD
+  // TODO: figure out if anything needs to go here
 }
 
 // Perform a single mutation on this chromosome
