@@ -31,7 +31,7 @@ class Deme {
     // Return a copy of the chromosome with the highest fitness.
     Chromosome get_best() const;
 
-    std::vector<Chromosome> create_pop(const cities_t* cities_ptr, unsigned pop_size);
+    std::vector<Chromosome *> create_pop(const cities_t* cities_ptr, unsigned pop_size);
 
   protected:
     // Randomly select a chromosome in the population based on fitness and
@@ -42,7 +42,7 @@ class Deme {
     // list of all city coords
     const cities_t* my_cities_ptr; // Keep ptr to cities, no need for full copy
     // Store vector of Chromosomes that represent permutations for salesman
-    std::vector<Chromosome> my_pop;
+    std::vector<Chromosome *> my_pop;
     // probability of a mutation occuring (0-1)
     const double my_mut_prob;
 };
